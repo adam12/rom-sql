@@ -45,8 +45,8 @@ if defined? JRUBY_VERSION
 else
   DB_URIS = {
     sqlite: 'sqlite::memory',
-    postgres: 'postgres://localhost/rom_sql',
-    mysql: 'mysql2://root@localhost/rom_sql?sql_mode=STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION',
+    postgres: ENV.fetch('POSTGRES_URL', 'postgres://localhost/rom_sql'),
+    mysql: ENV.fetch('MYSQL_URL', 'mysql2://root@localhost/rom_sql?sql_mode=STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION'),
     oracle: "oracle://#{ oracle_settings[:host] }:#{ oracle_settings[:port] }/" \
             "#{ oracle_settings[:db_name] }?username=rom_sql&password=rom_sql&autosequence=true"
   }
