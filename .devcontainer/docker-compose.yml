@@ -1,0 +1,28 @@
+---
+version: "3"
+services:
+  app:
+    image: ruby:2.7
+    working_dir: /workspace
+    volumes:
+      - "..:/workspace"
+    command: sleep infinity
+    environment:
+      POSTGRES_URL: postgres://postgres:secret@postgres/rom_sql
+      MYSQL_URL: mysql2://root:secret@mysql/rom_sql?sql_mode=STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION
+    depends_on:
+      - mysql
+      - postgres
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: rom_sql
+  postgres:
+    image: postgres:9.6
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: rom_sql
+
