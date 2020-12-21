@@ -15,7 +15,7 @@ group :test do
   if RUBY_ENGINE == 'rbx'
     gem 'pg', '~> 0.18.0', platforms: :rbx
   else
-    gem 'pg', '~> 0.19', platforms: :mri
+    gem 'pg', '~> 1.2', platforms: :mri
   end
 
   gem 'mysql2', platforms: [:mri, :rbx]
